@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn Instance to server flask
+After=network.target
+
+[Service]
+User=administrator
+Group=www-data
+WorkingDirectory=/home/administrator/flask
+Environment="PATH=/home/administrator/flask/v/bin"
+ExecStart=/home/administrator/flask/v/bin/gunicorn --workers 3 --bind unix:app.sock -m 007 app:app
+#ExecStart=/home/administrator/flask/v/bin/gunicorn3 --workers=3 app:app --daemon
+[Install]
+WantedBy=multi-user.target
